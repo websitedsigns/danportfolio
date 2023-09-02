@@ -1,43 +1,21 @@
 import React from 'react';
-import Header from './components/Header';
-import PortfolioItem from './components/PortfolioItems';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Header from './components/Header.js';
+import Home from './pages/Home.js';
+import Portfolio from './pages/Portfolio.js';
+import './App.css';
 
-const App = () => {
-  const portfolioData = [
-    {
-      title: 'Restaurant App',
-        description: 'Restaurant App',
-        imageSrc: `${process.env.PUBLIC_URL}/images/littlelemonapp.png`,
-      link: 'https://littlelemonlondon.netlify.app/',
-    },
-    // Add more portfolio items here
-    {
-        title: 'Calculator App',
-        description: 'Calculator App, using React',
-        imageSrc: `${process.env.PUBLIC_URL}/images/calc.png`, // Use process.env.PUBLIC_URL to reference images in public folder
-        link: 'https://calculatereact.netlify.app/',
-      },
-
-      {
-        title: 'Weather App',
-        description: 'Interactive weather App',
-        imageSrc: `${process.env.PUBLIC_URL}/images/weather.png`, // Use process.env.PUBLIC_URL to reference images in public folder
-        link: 'https://calculatereact.netlify.app/',
-      },
-
-
-  ];
-
+function App() {
   return (
-    <div className="App">
+    <Router>
       <Header />
-      <section className="portfolio">
-        {portfolioData.map((item, index) => (
-          <PortfolioItem key={index} {...item} />
-        ))}
-      </section>
-    </div>
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="/Portfolio" component={Portfolio} />
+        {/* Add more routes for individual projects */}
+      </Switch>
+    </Router>
   );
-};
+}
 
 export default App;
